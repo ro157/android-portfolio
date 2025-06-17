@@ -10,13 +10,25 @@
 </head>
 <body>
 
- <header>
+<header>
   <div class="header-container">
     <img src="images/profile.png" alt="Profile Picture">
     <h1>Rohit Kumar</h1>
     <p>Android App Developer</p>
+
+    <!-- 🔽 Dropdown button inside header -->
+    <div class="dropdown">
+      <button class="dropbtn"><i class="fas fa-bars"></i></button>
+      <div class="dropdown-content" id="dropdownContent">
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </div>
   </div>
 </header>
+
 
 <nav>
   <ul class="nav-links">
@@ -25,14 +37,16 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="resume.pdf" download class="resume-link">
-      <i class="fas fa-download"></i> Download Resume
+      <i class="fas fa-download"></i> <span style="color:#c3ec2f;">Download Resume</span>
     </a></li>
   </ul>
+
+ 
 </nav>
 
 <section id="about" class="section">
   <h2>About Me</h2>
-  <p>I’m a passionate Android App Developer with experience in Java, Kotlin, and Firebase. I build responsive, user-friendly mobile apps with focus on performance and usability. My goal is to create impactful apps that make a difference.</p>
+  <p>I’m passionate about Android App Development with experience in Java and Firebase. I build responsive, user-friendly mobile apps focused on performance and usability. My goal is to create impactful apps that make a difference.</p>
 </section>
 
 <section id="skills" class="section">
@@ -44,6 +58,7 @@
     <li>Firebase</li>
     <li>Git & GitHub</li>
     <li>REST APIs</li>
+    <li>Flutter</li>
   </ul>
 </section>
 
@@ -70,6 +85,38 @@
 <footer>
   <p>© 2025 Rohit Kumar. All rights reserved.</p>
 </footer>
+
+<script>
+  // Scroll animation
+  document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  });
+
+  // Dropdown toggle
+  const dropdownBtn = document.querySelector('.dropbtn');
+  const dropdownContent = document.getElementById('dropdownContent');
+
+  dropdownBtn.addEventListener('click', () => {
+    dropdownContent.classList.toggle('show');
+  });
+
+  // Close dropdown if clicked outside
+  window.onclick = function(event) {
+    if (!event.target.closest('.dropdown')) {
+      dropdownContent.classList.remove('show');
+    }
+  };
+</script>
 
 </body>
 </html>
